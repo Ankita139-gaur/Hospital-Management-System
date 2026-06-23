@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{%block content%}
+<style>
+    .card{
+    border:none;
+    border-radius:20px;
+}
+
+.table{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.table tbody tr:hover{
+    background-color:#f8f9fa;
+    transition:0.3s;
+}
+
+.btn{
+    border-radius:10px;
+    font-weight:600;
+}
+</style>
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary mb-4">Patients</h2>
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{patient.id }}</td>
+                    <td>{{patient.name}}</td>
+                    <td>{{patient.age}}</td>
+                    <td>{{patient.phone}}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-danger">
+                        No Patient Available
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-center mt-3">
+            <a href="{% url 'add_patient' %}" class="btn btn-success">
+
+                Add Patient
+
+            </a>
+        </div>
+    </div>
+</div>
+{%endblock%}
